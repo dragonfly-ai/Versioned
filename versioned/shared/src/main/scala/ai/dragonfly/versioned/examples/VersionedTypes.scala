@@ -54,7 +54,7 @@ case class Foo( i: Int, l: Long, f: Float, d: Double, b: Boolean ) extends Versi
  *  @param b a Boolean primitive type
  */
 
-case class `com.whatever.Foo:0.2`(s: String, i: Int, l: Long, f: Float, d: Double, b: Boolean) extends StaleClass[Foo] {
+case class `com.whatever.Foo:0.2`(s: String, i: Int, l: Long, f: Float, d: Double, b: Boolean) extends StaleVersionOf[Foo] {
   override def upgrade: Some[Foo] = Some( Foo(i, l, f, d, b) )
 }
 
@@ -70,6 +70,6 @@ case class `com.whatever.Foo:0.2`(s: String, i: Int, l: Long, f: Float, d: Doubl
  *  @param d a Double primitive type
  */
 
-case class `com.whatever.Foo:0.1` (s: String, i: Int, l: Long, f: Float, d: Double) extends StaleClass[`com.whatever.Foo:0.2`] {
+case class `com.whatever.Foo:0.1` (s: String, i: Int, l: Long, f: Float, d: Double) extends StaleVersionOf[`com.whatever.Foo:0.2`] {
   override def upgrade: Some[`com.whatever.Foo:0.2`] = Some( `com.whatever.Foo:0.2`( s, i, l, f, d, false ) )
 }
